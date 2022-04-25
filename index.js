@@ -21,6 +21,7 @@ const run = async () => {
         await client.connect();
 
         const serviceCollection = client.db('intelligentCar').collection('services');
+        const orderCollection = client.db('intelligentCar').collection('orders');
 
         app.get('/services', async (req, res) => {
             const query = {};
@@ -48,6 +49,13 @@ const run = async () => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await serviceCollection.deleteOne(query);
+            res.send(result);
+        });
+
+        //order collection API
+        app.post('/order', async (req, res) => {
+            const order = req.body;
+            const result = await orderCollection.insertOne(order);
             res.send(result);
         });
 
