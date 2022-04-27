@@ -108,6 +108,9 @@ const run = async () => {
 };
 run().catch(console.dir);
 
+app.get('/hero', (req, res) => {
+    res.send('Welcome hero, go to mandwa to see jhandwa');
+});
 
 app.get('/', (req, res) => {
     res.send('Running Intelligent Server.')
